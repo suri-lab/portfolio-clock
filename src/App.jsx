@@ -70,9 +70,6 @@ export default function App() {
         {/* Main Clock */}
         <ClockFace time={time} theme={theme} />
 
-        {/* World Clocks */}
-        <WorldClocks time={time} theme={theme} />
-
         {/* Weather + Eye Guard row */}
         <div className="grid grid-cols-2 gap-4">
           <WeatherWidget theme={theme} />
@@ -81,6 +78,9 @@ export default function App() {
 
         {/* D-Day */}
         <DDayCounter theme={theme} />
+
+        {/* World Clocks */}
+        <WorldClocks time={time} theme={theme} />
 
         {/* Footer */}
         <p className="text-center text-xs pb-2" style={{ color: theme.dimColor }}>
