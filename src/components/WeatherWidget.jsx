@@ -16,7 +16,7 @@ function WeatherIcon({ code, size = 48 }) {
 }
 
 export default function WeatherWidget({ theme }) {
-  const { weather, error, loading, locationDenied } = useWeather(API_KEY);
+  const { weather, error, loading } = useWeather(API_KEY);
 
   return (
     <div className="glass-card p-4 flex flex-col gap-2">
@@ -90,14 +90,6 @@ export default function WeatherWidget({ theme }) {
         </div>
       )}
 
-      {weather && locationDenied && (
-        <div
-          className="text-xs text-center py-1 px-2 rounded"
-          style={{ background: 'rgba(255,255,255,0.07)', color: theme.dimColor }}
-        >
-          위치 권한을 허용하면 현재 위치 날씨가 표시됩니다
-        </div>
-      )}
     </div>
   );
 }
