@@ -20,12 +20,14 @@ function CityCard({ city, time, theme }) {
       <div className="text-xs font-semibold" style={{ color: theme.dimColor }}>
         {city.name}
       </div>
-      <div
-        className="text-lg font-mono font-bold tracking-wider"
-        style={{ color: theme.textColor }}
-      >
-        {display}
-        <span className="text-xs ml-1 font-normal" style={{ color: theme.accentColor }}>
+      <div className="flex flex-col items-center gap-0">
+        <div
+          className="text-lg font-mono font-bold tracking-wider"
+          style={{ color: theme.textColor }}
+        >
+          {display}
+        </div>
+        <span className="text-xs font-normal" style={{ color: theme.accentColor }}>
           {ampm}
         </span>
       </div>
