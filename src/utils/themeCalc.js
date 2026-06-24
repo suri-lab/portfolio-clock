@@ -57,6 +57,6 @@ export function getThemeBySunData(sunriseDate, sunsetDate, now) {
   if (cur >= sr - 2 && cur < sr) return THEMES.dawn;
   if (cur >= sr && cur < sr + 3) return THEMES.sunrise;
   if (cur >= sr + 3 && cur < ss) return THEMES.daytime;
-  if (cur >= ss && cur < ss + 2) return THEMES.sunset;
+  if (cur >= ss && cur < ss + 1) return THEMES.sunset;
   return THEMES.night;
 }
