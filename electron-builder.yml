@@ -1,0 +1,33 @@
+appId: com.suri.portfolioclock
+productName: Portfolio Clock
+copyright: 황수리
+
+directories:
+  output: dist-electron
+
+files:
+  - dist/**
+  - electron/**
+  - assets/**
+  - "!src/**"
+  - "!node_modules/**"
+  - "!scripts/**"
+
+win:
+  icon: assets/icon.ico
+  target:
+    - target: portable
+      arch: [x64]
+
+mac:
+  icon: assets/icon.png
+  target:
+    - target: dmg
+
+linux:
+  icon: assets/icon.png
+  target:
+    - target: AppImage
+
+extraMetadata:
+  main: electron/main.cjs

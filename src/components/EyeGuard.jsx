@@ -16,7 +16,10 @@ export default function EyeGuard({ theme }) {
     setPhase('resting');
     setRestLeft(REST_S);
 
-    if (Notification.permission === 'granted') {
+    if (window.electronAPI) {
+      // Electron: 권한 팝업 없이 OS 네이티브 알림
+      window.electronAPI.showNotification('눈 건강 알림 👀', '20초간 6m 거리의 먼 곳을 바라보세요!');
+    } else if (Notification.permission === 'granted') {
       new Notification('눈 건강 알림 👀', {
         body: '20초간 6m 거리의 먼 곳을 바라보세요!',
         tag: 'eye-guard',
