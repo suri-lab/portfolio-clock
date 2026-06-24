@@ -1,4 +1,5 @@
 import { useWeather } from '../hooks/useWeather';
+import { getWeatherDesc } from '../utils/weatherDesc';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY ?? '';
 
@@ -71,7 +72,7 @@ export default function WeatherWidget({ theme }) {
               체감 {Math.round(weather.main.feels_like)}°C
             </div>
             <div className="text-xs mt-0.5" style={{ color: theme.dimColor }}>
-              {weather.weather?.[0]?.description}
+              {getWeatherDesc(weather.weather?.[0]?.id)}
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ export function useWeather(apiKey) {
       setLoading(true);
       try {
         const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric&lang=kr`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${apiKey}&units=metric`
         );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
