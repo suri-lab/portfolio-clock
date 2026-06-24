@@ -8,13 +8,15 @@ export function useWeather(apiKey) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
+  const [locationDenied, setLocationDenied] = useState(false);
   const cachedRef = useRef(null);
 
   useEffect(() => {
-    if (!navigator.geolocation) { setLocation(SEOUL); return; }
+    if (!navigator.geolocation) { setLocation(SEOUL); setLocationDenied(true); return; }
     navigator.geolocation.getCurrentPosition(
       (pos) => setLocation({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-      () => setLocation(SEOUL),
+      () => { setLocation(SEOUL); setLocationDenied(true); },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
     );
   }, []);
 
@@ -45,5 +47,5 @@ export function useWeather(apiKey) {
     return () => clearInterval(id);
   }, [location, apiKey]);
 
-  return { weather, error, loading, location };
+  return { weather, error, loading, location, locationDenied };
 }
