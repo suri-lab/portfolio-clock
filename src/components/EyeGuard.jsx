@@ -17,9 +17,8 @@ export default function EyeGuard({ theme }) {
     setRestLeft(REST_S);
 
     if (window.electronAPI) {
-      // Electron: 권한 팝업 없이 OS 네이티브 알림
       window.electronAPI.showNotification('눈 건강 알림 👀', '20초간 6m 거리의 먼 곳을 바라보세요!');
-    } else if (Notification.permission === 'granted') {
+    } else if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
       new Notification('눈 건강 알림 👀', {
         body: '20초간 6m 거리의 먼 곳을 바라보세요!',
         tag: 'eye-guard',
@@ -58,7 +57,8 @@ export default function EyeGuard({ theme }) {
 
   const toggle = async () => {
     if (!enabled) {
-      if (Notification.permission === 'default') {
+      // iOS Safari는 Notification API 미지원 — 존재 여부 먼저 확인
+      if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
         await Notification.requestPermission();
       }
       setEnabled(true);
@@ -156,11 +156,17 @@ export default function EyeGuard({ theme }) {
           </h2>
           <button
             onClick={toggle}
-            className="relative inline-flex items-center w-11 h-6 rounded-full transition-colors duration-300"
-            style={{ background: enabled ? theme.accentColor : 'rgba(255,255,255,0.2)' }}
+            className="relative inline-flex items-center w-11 h-6 rounded-full transition-colors duration-300 touch-manipulation cursor-pointer"
+            style={{
+              background: enabled ? theme.accentColor : 'rgba(255,255,255,0.2)',
+              WebkitTapHighlightColor: 'transparent',
+              padding: '10px 0',        // 터치 영역 44px로 확장
+              margin: '-10px 0',
+              boxSizing: 'content-box',
+            }}
           >
             <span
-              className="w-4 h-4 rounded-full bg-white shadow transition-transform duration-300"
+              className="w-4 h-4 rounded-full bg-white shadow transition-transform duration-300 pointer-events-none"
               style={{ transform: enabled ? 'translateX(24px)' : 'translateX(4px)' }}
             />
           </button>
