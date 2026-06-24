@@ -27,9 +27,9 @@ export const THEMES = {
     name: 'Sunset',
     nameKr: '일몰',
     gradient: 'linear-gradient(135deg, #fd79a8 0%, #e17055 50%, #fdcb6e 100%)',
-    textColor: '#1A237E',
-    accentColor: '#e17055',
-    dimColor: 'rgba(26, 35, 126, 0.6)',
+    textColor: '#3E1200',
+    accentColor: '#b83200',
+    dimColor: 'rgba(62, 18, 0, 0.75)',
   },
   night: {
     name: 'Night',
